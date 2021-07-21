@@ -7,7 +7,7 @@ on:
       - 'LICENSE'
       - 'README.md'
     branches:
-      - exampleSite
+      - master
   workflow_dispatch:
     # manual run
 
@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
-        with:
-          ref: exampleSite
 
       - name: Get Theme
         run: git submodule update --init --recursive
@@ -35,7 +33,11 @@ jobs:
         run: hugo --buildDrafts --gc --verbose --minify
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          github_token: ${{ secrets.TOKEN }}
-          publish_dir: ./public
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: web # The folder the action should deploy.
+          CLEAN: true
+          CLEAN_EXCLUDE: '["CNAME"]'
+        if: github.event_name != 'pull_request'
