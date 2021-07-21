@@ -4,8 +4,6 @@ url: "/research"
 summary: "Research"
 ---
 
-# New
-
 # Higgs Bundles
 
 Some explanation. <a href="/HiggsBundles.pdf">Fullscreen.</a>
