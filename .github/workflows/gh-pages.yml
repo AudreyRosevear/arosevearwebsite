@@ -8,8 +8,6 @@ on:
       - 'README.md'
     branches:
       - master
-  workflow_dispatch:
-    # manual run
 
 jobs:
   deploy:
